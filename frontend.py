@@ -39,14 +39,12 @@ async def main (page: ft.Page):
         tecnologia = e.control.data
 
         try:
-            async with httpx.AsyncClient as client:
+            async with httpx.AsyncClient() as client:
                 resposta = await client.post(f"{API_URL}/votar", json={"tecnologia": tecnologia})
             dados = resposta.json()
 
-            if dados.get("sucesso"):
-                await carregar_placar()
-            else:
-                page.show_dialog(ft.SnackBar(content=ft.Text(dados.get("mensagem", "Erro desconhecido"))))
+            await carregar_placar()
+            
         except Exception:
             page.show_dialog(ft.SnackBar(content=ft.Text(f"Falha de conexão ao votar em {tecnologia}")))
     
