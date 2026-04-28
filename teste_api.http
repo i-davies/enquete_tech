@@ -1,0 +1,18 @@
+### Buscar placar atual
+GET http://localhost:5000/api/votos
+
+### Voto valido
+POST http://localhost:5000/api/votar
+Content-Type: application/json
+
+{
+    "tecnologia": "Flask"
+}
+
+### Voto invalido
+POST http://localhost:5000/api/votar
+Content-Type: application/json
+
+{
+    "tecnologia": 123123
+}
